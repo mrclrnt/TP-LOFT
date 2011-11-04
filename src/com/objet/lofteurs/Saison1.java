@@ -15,6 +15,8 @@ public class Saison1 {
 		new Saison1().primeTime();
 	}
 	
+	//test
+	
 	public void primeTime() {
 		ZoneGraphique zone = new ZoneGraphique("Mon premier loft");
 		Loft loft = new Loft(tailleLoft,zone);
