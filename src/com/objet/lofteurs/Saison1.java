@@ -15,7 +15,7 @@ public class Saison1 {
 		new Saison1().primeTime();
 	}
 	
-	//tbonjourest
+	//
 	
 	public void primeTime() {
 		ZoneGraphique zone = new ZoneGraphique("Mon premier loft");
