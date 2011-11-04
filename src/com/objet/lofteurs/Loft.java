@@ -35,6 +35,14 @@ public class Loft {
 		
 		
 	}
+
+	public int getMaxEnergie() {
+		return maxEnergie;
+	}
+
+	public void setMaxEnergie(int maxEnergie) {
+		this.maxEnergie = maxEnergie;
+	}
 	
 	
 }
