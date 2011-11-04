@@ -8,8 +8,10 @@ public class Loft {
 	private ZoneGraphique zone;
 	private int h;
 	private int w;
+	private int maxEnergie;
+	private int minEnergie;
 	private ArrayList<ArrayList<Cellule>> listeCellules;
-	private ArrayList<Erratique> listeNeuneus;
+	private ArrayList<Neuneu> listeNeuneus;
 	
 
 	//Constructeur de Loft (taille et liste de cellules)

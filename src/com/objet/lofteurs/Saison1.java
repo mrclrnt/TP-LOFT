@@ -34,7 +34,7 @@ public class Saison1 {
 			else {
 				x -= proportionVorace;
 				if (x<proportionErratique) {
-					loft.add(new Erratique(loft,
+					loft.add(new Neuneu(loft,
 							(int)(Math.random()*29),
 							(int)(Math.random()*29)));
 				}

@@ -1,12 +1,12 @@
 package com.objet.lofteurs;
 
-public class Erratique {
+public class Neuneu {
 	protected int energie;
 	protected String sexe;
 	protected Cellule celluleCourante;
 	protected Loft loft;
 	
-	public Erratique(Loft loft,int x,int y) {
+	public Neuneu(Loft loft,int x,int y) {
 		double pourcentageEnergie = Math.random();
 		this.setLoft(loft);
 		this.setCelluleCourante(this.loft.getCellule(x,y));
