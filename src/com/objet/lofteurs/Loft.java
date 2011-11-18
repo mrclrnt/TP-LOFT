@@ -1,7 +1,6 @@
 package com.objet.lofteurs;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class Loft {
 
@@ -32,8 +31,6 @@ public class Loft {
 	
 	public void remplissageAleatoire(float f){
 		
-		
-		
 	}
 
 	public int getMaxEnergie() {
@@ -44,5 +41,8 @@ public class Loft {
 		this.maxEnergie = maxEnergie;
 	}
 	
-	
+	public void add(Neuneu neuneu){
+		if (listeNeuneus)
+		
+	}
 }
