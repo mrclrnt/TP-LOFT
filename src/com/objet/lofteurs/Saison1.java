@@ -24,9 +24,12 @@ public class Saison1 {
 	public void primeTime() {
 		ZoneGraphique zone = new ZoneGraphique("Mon premier loft");
 		Loft loft = new Loft(tailleLoft,zone);
-		loft.remplissageAleatoire(this.quantiteNourriture,this.Repartition);
+		loft.remplissageAleatoire(Saison1.quantiteNourriture,Saison1.Repartition);
 		zone.ajouterObjet(loft);
-		
+		Neuneu Philippe = new Neuneu(loft,2,2);
+		System.out.println(Philippe.getSexe());
+		loft.add(Philippe);
+		System.out.println(loft.getListeNeuneus().get(0).getSexe());
 //		for (int i=0 ; i<nombreLofteurs ; i++) {
 //			double x = Math.random();
 //			if (x<proportionVorace) {

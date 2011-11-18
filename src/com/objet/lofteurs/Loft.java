@@ -9,7 +9,6 @@ public class Loft implements ObjetDessinable {
 	private int h;
 	private int w;
 	private int maxEnergie;
-	private int minEnergie;
 	private ArrayList<ArrayList<Cellule>> listeCellules;
 	private ArrayList<Neuneu> listeNeuneus;
 
@@ -76,8 +75,16 @@ public class Loft implements ObjetDessinable {
 		this.maxEnergie = maxEnergie;
 	}
 
-	public void add(Neuneu neuneu) {
+	public ArrayList<Neuneu> getListeNeuneus() {
+		return listeNeuneus;
+	}
 
+	public void setListeNeuneus(ArrayList<Neuneu> listeNeuneus) {
+		this.listeNeuneus = listeNeuneus;
+	}
+
+	public void add(Neuneu neuneu) {
+		this.getListeNeuneus().add(neuneu);
 	}
 
 	@Override

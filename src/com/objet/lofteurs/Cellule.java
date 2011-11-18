@@ -45,7 +45,7 @@ public class Cellule {
 		if (this.nourriture != null){
 			ImageObserver observer = null;
 	        Image image = Toolkit.getDefaultToolkit().getImage(this.nourriture.getNourriturePath()) ;
-			g.drawImage(image, 60*x+1, 60*y+1, 30, 15, observer);
+			g.drawImage(image, 60*x+1, 60*y+1,15,15, observer);
 		}
 	}
 	
