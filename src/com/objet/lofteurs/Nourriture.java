@@ -1,5 +1,9 @@
 package com.objet.lofteurs;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.io.File;
+
 public class Nourriture {
 	protected String nom;
 	protected int quantite;
@@ -25,11 +29,21 @@ public class Nourriture {
 	public void setEnergie(int energie) {
 		this.energie = energie;
 	}
+	
 	public String getNom() {
 		return nom;
 	}
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+	
+	public void getNourritureInformation(String path, int imgWidth, int imgHeight){
+		switch(this.nom){
+		case "Pommes":
+			path = new File("pomme_caramalisee.jpg").getName();
+			imgWidth = 30;
+			imgHeight = 15;
+		}
 	}
 
 }
