@@ -7,10 +7,10 @@ public class Neuneu {
 	protected Loft loft;
 	
 	public Neuneu(Loft loft,int x,int y) {
-		int pourcentageEnergie = (int)(Math.random()+0.5);
 		this.setLoft(loft);
 		this.setCelluleCourante(this.loft.getCellule(x,y));
-		this.setEnergie(this.loft.getMaxEnergie()*pourcentageEnergie);
+		int Energie = (int)(this.loft.getMaxEnergie()*Math.random());
+		this.setEnergie(Energie);
 		this.setSexe();
 	}
 
