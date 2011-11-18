@@ -1,5 +1,8 @@
 package com.objet.lofteurs;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
 public class Cellule {
 
 		private int x;
@@ -31,6 +34,12 @@ public class Cellule {
 		this.x=x;
 		this.y=y;
 	}
+	
+	public void dessinerObjet(Graphics g) {
+		g.setColor(new Color(255,0,0));
+		g.fillRect(60*x, 60*y, 60, 60);
+	}
+
 	
 	
 }

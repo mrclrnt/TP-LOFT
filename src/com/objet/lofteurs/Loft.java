@@ -1,8 +1,9 @@
 package com.objet.lofteurs;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 
-public class Loft {
+public class Loft implements ObjetDessinable {
 
 	private ZoneGraphique zone;
 	private int h;
@@ -29,6 +30,10 @@ public class Loft {
 		}
 	}
 	
+	public Cellule getCellule(int x, int y){
+		return listeCellules.get(x).get(y);
+	}
+	
 	public void remplissageAleatoire(float f){
 		
 	}
@@ -42,7 +47,19 @@ public class Loft {
 	}
 	
 	public void add(Neuneu neuneu){
-		if (listeNeuneus)
 		
 	}
+
+	@Override
+	public void dessinerObjet(Graphics g) {
+		for (int i=0; i<w; i++){
+			for (int j=0; j<w; j++){
+				this.getCellule(i, j).dessinerObjet(g);
+			}
+		}
+	}
+		
+		
+		
+
 }
