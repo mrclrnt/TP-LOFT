@@ -15,6 +15,7 @@ public class Neuneu {
 	}
 
 
+	// Getter et Setter lies a la cellule sur laquelle se trouve le neuneu
 	public Cellule getCelluleCourante() {
 		return celluleCourante;
 	}
@@ -22,8 +23,9 @@ public class Neuneu {
 	public void setCelluleCourante(Cellule celluleCourante) {
 		this.celluleCourante = celluleCourante;
 	}
-
-
+	//*********************************************
+	
+	// Getter et Setter lies a l'energie du neuneu
 	public int getEnergie() {
 		return energie;
 	}
@@ -31,9 +33,9 @@ public class Neuneu {
 	public void setEnergie(int energie) {
 		this.energie = energie;
 	}
+	//*********************************************
 
-
-
+	// Getter et Setter lies au sexe du neuneu
 	public String getSexe() {
 		return this.sexe;
 	}
@@ -49,10 +51,9 @@ public class Neuneu {
 		}
 		this.sexe=sexe;
 	}
+	//*********************************************
 
-
-
-
+	// Getter et Setter lies au loft dans lequel se trouve le neuneu
 	public Loft getLoft() {
 		return loft;
 	}
@@ -60,4 +61,6 @@ public class Neuneu {
 	public void setLoft(Loft loft) {
 		this.loft = loft;
 	}
+	//*********************************************
+
 }
