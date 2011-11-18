@@ -8,7 +8,10 @@ public class Saison1 {
 	public static float proportionErratique = .75f;
 	public static float proportionVorace = .25f;
 	public static float proportionCannibale = 0f;
-	public static int quantiteNourriture = 30;
+	public static int quantiteNourriture = 100;
+	public static double Repartition = 0.05; 	// A chaque remplissage de la grille en nourriture je peux ajouter
+												// jusqu a Repartition (%) de la nourriture totale 
+												// 	sur la cellule consideree
 	/**
 	 * @param args
 	 */
@@ -21,7 +24,7 @@ public class Saison1 {
 	public void primeTime() {
 		ZoneGraphique zone = new ZoneGraphique("Mon premier loft");
 		Loft loft = new Loft(tailleLoft,zone);
-		loft.remplissageAleatoire(this.quantiteNourriture);
+		loft.remplissageAleatoire(this.quantiteNourriture,this.Repartition);
 		zone.ajouterObjet(loft);
 		
 //		for (int i=0 ; i<nombreLofteurs ; i++) {

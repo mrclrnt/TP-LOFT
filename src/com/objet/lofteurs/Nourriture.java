@@ -37,8 +37,7 @@ public class Nourriture {
 	
 	public String getNourriturePath(){
 		String path = new String();
-		switch(this.nom){
-		case "Pommes":
+		if(this.nom=="Pommes"){
 			path = new File("pomme_caramalisee.jpg").getName();
 		}
 		return path;

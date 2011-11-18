@@ -33,27 +33,39 @@ public class Loft implements ObjetDessinable {
 		return listeCellules.get(x).get(y);
 	}
 
-	public void remplissageAleatoire(int quantiteNourriture) {
-		int NourritureRestante=quantiteNourriture;
-		//while (NourritureRestante > 0) {
+	/* *********************************************************************** */
+	/* Methode permettant de repartir la nourriture sur l ensemble du plateau */
+	/* *********************************************************************** */
+	public void remplissageAleatoire(int quantiteNourriture,double Repartition) {
+		int nourritureDeposee=0;
+		int nourritureRestante=quantiteNourriture;
+		while ((nourritureDeposee < quantiteNourriture) && (nourritureRestante>0)) {
 			for (int i = 0; i < h; i++) {
 				for (int j = 0; j < w; j++) {
+					if ((nourritureDeposee < quantiteNourriture) && (nourritureRestante>0)) {
 					double x = Math.random();
-					if (x>0.5){
-						if (this.getCellule(i,j).getNourriture()==null) {
-						double f = 0.25*Math.random();
-						int quantiteCellule=(int)(f*NourritureRestante);
-						if (quantiteCellule > 0){
-							Nourriture PommeDansCellule = new Nourriture("Pommes",quantiteCellule,10);
-							this.getCellule(i,j).setNourriture(PommeDansCellule);
-						}
-						NourritureRestante=NourritureRestante-quantiteCellule;
+					if (x>0.5){					// Une chance sur deux d'envisager ou non de mettre de la nourriture
+						int quantiteCellule = (int)(Repartition*quantiteNourriture*(Math.random()));
+						if (quantiteCellule+nourritureDeposee<=quantiteNourriture) {
+							if (this.getCellule(i,j).getNourriture()==null) {
+								Nourriture PommeDansCellule = new Nourriture("Pommes",quantiteCellule,10);
+								this.getCellule(i,j).setNourriture(PommeDansCellule);
+								System.out.println("Initialisation");
+							}
+							else {
+								this.getCellule(i,j).getNourriture().setQuantite(this.getCellule(i,j).getNourriture().getQuantite() + quantiteCellule);
+								System.out.println("Update de bouffe");
+								System.out.println(quantiteCellule);
+							}
+							nourritureRestante=nourritureRestante-quantiteCellule;
+							nourritureDeposee=quantiteCellule+nourritureDeposee;
+							System.out.println("quantiteCellule : " + quantiteCellule + ",NourritureRestante : " + nourritureRestante +", Nourriture Deposee : " + nourritureDeposee);
+							}
 						}
 					}
 				}
 			}
-		//}
-
+		}
 	}
 
 	public int getMaxEnergie() {
