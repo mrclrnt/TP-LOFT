@@ -1,8 +1,17 @@
 package com.objet.lofteurs;
 
 public class Nourriture {
+	protected String nom;
 	protected int quantite;
 	protected int energie;
+	
+	public Nourriture(String nom, int quantite, int energie) {
+		super();
+		this.nom = nom;
+		this.quantite = quantite;
+		this.energie = energie;
+	}
+
 	
 	public int getQuantite() {
 		return quantite;
@@ -15,6 +24,12 @@ public class Nourriture {
 	}
 	public void setEnergie(int energie) {
 		this.energie = energie;
+	}
+	public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
 }
