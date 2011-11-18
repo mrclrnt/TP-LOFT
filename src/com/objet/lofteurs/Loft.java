@@ -1,7 +1,6 @@
 package com.objet.lofteurs;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class Loft {
 
@@ -32,9 +31,10 @@ public class Loft {
 	
 	public void remplissageAleatoire(float f){
 		
-		
-		
 	}
 	
-	
+	public void add(Neuneu neuneu){
+		if (listeNeuneus)
+		
+	}
 }
