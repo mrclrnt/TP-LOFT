@@ -1,5 +1,8 @@
 package com.objet.lofteurs;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
 public class Nourriture {
 	protected int quantite;
 	protected int energie;
@@ -15,6 +18,13 @@ public class Nourriture {
 	}
 	public void setEnergie(int energie) {
 		this.energie = energie;
+	}
+	
+	public void getNourritureInformation(String path, int Imgwidth, int Imgheight){
+		
+		
+		
+		
 	}
 
 }
