@@ -8,6 +8,7 @@ public class Saison1 {
 	public static float proportionErratique = .75f;
 	public static float proportionVorace = .25f;
 	public static float proportionCannibale = 0f;
+	public static int quantiteNourriture = 30;
 	/**
 	 * @param args
 	 */
@@ -20,7 +21,7 @@ public class Saison1 {
 	public void primeTime() {
 		ZoneGraphique zone = new ZoneGraphique("Mon premier loft");
 		Loft loft = new Loft(tailleLoft,zone);
-		loft.remplissageAleatoire(0.1f);
+		loft.remplissageAleatoire(this.quantiteNourriture);
 		zone.ajouterObjet(loft);
 		
 //		for (int i=0 ; i<nombreLofteurs ; i++) {

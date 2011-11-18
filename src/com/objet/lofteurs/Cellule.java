@@ -37,9 +37,7 @@ public class Cellule {
 	
 	public void dessinerObjet(Graphics g) {
 		g.setColor(new Color(255,0,0));
-		g.fillRect(60*x, 60*y, 60, 60);
+		g.drawRect(60*x, 60*y, 60, 60);
 	}
-
-	
 	
 }
