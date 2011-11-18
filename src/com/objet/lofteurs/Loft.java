@@ -35,22 +35,24 @@ public class Loft implements ObjetDessinable {
 
 	public void remplissageAleatoire(int quantiteNourriture) {
 		int NourritureRestante=quantiteNourriture;
-		while (NourritureRestante > 0) {
+		//while (NourritureRestante > 0) {
 			for (int i = 0; i < h; i++) {
 				for (int j = 0; j < w; j++) {
 					double x = Math.random();
 					if (x>0.5){
 						if (this.getCellule(i,j).getNourriture()==null) {
 						double f = 0.25*Math.random();
-						int quantiteCellule=(int)f*NourritureRestante;
-						Nourriture PommeDansCellule = new Nourriture("Pomme",quantiteCellule,10);
-						this.getCellule(i,j).setNourriture(PommeDansCellule);
+						int quantiteCellule=(int)(f*NourritureRestante);
+						if (quantiteCellule > 0){
+							Nourriture PommeDansCellule = new Nourriture("Pommes",quantiteCellule,10);
+							this.getCellule(i,j).setNourriture(PommeDansCellule);
+						}
 						NourritureRestante=NourritureRestante-quantiteCellule;
 						}
 					}
 				}
 			}
-		}
+		//}
 
 	}
 

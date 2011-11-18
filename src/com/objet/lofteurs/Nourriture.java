@@ -1,7 +1,5 @@
 package com.objet.lofteurs;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.io.File;
 
 public class Nourriture {
@@ -37,13 +35,13 @@ public class Nourriture {
 		this.nom = nom;
 	}
 	
-	public void getNourritureInformation(String path, int imgWidth, int imgHeight){
+	public String getNourriturePath(){
+		String path = new String();
 		switch(this.nom){
 		case "Pommes":
 			path = new File("pomme_caramalisee.jpg").getName();
-			imgWidth = 30;
-			imgHeight = 15;
 		}
+		return path;
 	}
 
 }

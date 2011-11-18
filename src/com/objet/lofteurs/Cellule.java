@@ -44,12 +44,8 @@ public class Cellule {
 		g.drawRect(60*x, 60*y, 60, 60);
 		if (this.nourriture != null){
 			ImageObserver observer = null;
-			String path = null;
-			int imageWidth = 0;
-			int imageHeight = 0;
-			this.nourriture.getNourritureInformation(path, imageWidth, imageHeight);
-	        Image image = Toolkit.getDefaultToolkit().getImage(path) ;
-			g.drawImage(image, 60*x+1, 60*y+1, imageWidth, imageHeight, observer);
+	        Image image = Toolkit.getDefaultToolkit().getImage(this.nourriture.getNourriturePath()) ;
+			g.drawImage(image, 60*x+1, 60*y+1, 30, 15, observer);
 		}
 	}
 	
