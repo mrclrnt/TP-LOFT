@@ -32,6 +32,14 @@ public class Loft {
 	public void remplissageAleatoire(float f){
 		
 	}
+
+	public int getMaxEnergie() {
+		return maxEnergie;
+	}
+
+	public void setMaxEnergie(int maxEnergie) {
+		this.maxEnergie = maxEnergie;
+	}
 	
 	public void add(Neuneu neuneu){
 		if (listeNeuneus)
