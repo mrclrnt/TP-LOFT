@@ -46,7 +46,7 @@ public class Neuneu {
 			newy=oldy-1; break;
 			}
 		}
-		Cellule nouvelleCellule= new Cellule(newx,newy);
+		Cellule nouvelleCellule=this.loft.getCellule(newx, newy);
 		this.setCelluleCourante(nouvelleCellule);
 		return nouvelleCellule;
 	}
