@@ -35,6 +35,7 @@ public class Saison1 {
 		zone.ajouterObjet(loft);
 		while(1==1){
 			loft.deplacer(Philippe);
+			zone.repaint();
 			try { 
 				  Thread.sleep(1000);
 				}
