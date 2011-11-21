@@ -80,19 +80,7 @@ public class Loft implements ObjetDessinable {
 			this.getCellule(xPosition, yPosition).setNeuneu(new Neuneu(this,xPosition,yPosition));
 		}
 	}
-
-	/* *********************************************************************** */
-	/* Methode permettant de deplacer un neuneu								   */
-	/* *********************************************************************** */
-	public void deplacer(Neuneu neuneu) {
-		Cellule vielleCellule = neuneu.getCelluleCourante();
-		this.getCellule(vielleCellule.getX(),vielleCellule.getY()).setNeuneu(null);
-		Cellule nouvelleCellule = neuneu.marcher();
-		this.getCellule(nouvelleCellule.getX(),nouvelleCellule.getY()).setNeuneu(neuneu);
-	//	System.out.println(neuneu.getCelluleCourante().getX() +" "+ neuneu.getCelluleCourante().getY());
-	}
-	
-	
+		
 	public int getMaxEnergie() {
 		return maxEnergie;
 	}
