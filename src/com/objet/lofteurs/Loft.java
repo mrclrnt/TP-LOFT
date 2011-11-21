@@ -36,7 +36,7 @@ public class Loft implements ObjetDessinable {
 	/* *********************************************************************** */
 	/* Methode permettant de repartir la nourriture sur l ensemble du plateau */
 	/* *********************************************************************** */
-	public void remplissageAleatoire(int quantiteNourriture,double Repartition) {
+	public void remplissageAleatoireNourriture(int quantiteNourriture,double Repartition) {
 		int nourritureDeposee=0;
 		int nourritureRestante=quantiteNourriture;
 		while ((nourritureDeposee < quantiteNourriture) && (nourritureRestante>0)) {
@@ -61,6 +61,23 @@ public class Loft implements ObjetDessinable {
 					}
 				}
 			}
+		}
+	}
+	
+	/* *********************************************************************** */
+	/* Methode permettant de repartir les Neuneus sur l ensemble du plateau */
+	/* *********************************************************************** */
+	public void remplissageAleatoireNeuneus(int nombreLofteurs) {
+		for (int i=0; i<nombreLofteurs;i++){
+			//Choisir une cellule vide pour y placer le neuneu
+			int xPosition = (int)(w*(Math.random()));
+			int yPosition = (int)(h*(Math.random()));
+			while(this.getCellule(xPosition, yPosition).getNeuneu() != null){
+				xPosition = (int)(w*(Math.random()));
+				yPosition = (int)(h*(Math.random()));
+			}
+			//placer le neuneu
+			this.getCellule(xPosition, yPosition).setNeuneu(new Neuneu(this,xPosition,yPosition));
 		}
 	}
 

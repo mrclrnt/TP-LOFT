@@ -46,6 +46,9 @@ public class Neuneu {
 		return nouvelleCellule;
 	}
 
+	public void seReproduire() {
+		
+	}
 
 	// Getter et Setter lies a la cellule sur laquelle se trouve le neuneu
 	public Cellule getCelluleCourante() {
@@ -97,9 +100,12 @@ public class Neuneu {
 	
 	public String getNeuneuPath(){
 		String path = new String();
-		//if(this.sexe=="homme"){
+		if(this.sexe=="homme"){
 			path = new File("neuneu1.png").getName();
-		//}
+		}
+		else if(this.sexe=="femme"){
+			path = new File("neuneu2.gif").getName();
+		}
 		return path;
 	}
 

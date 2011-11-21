@@ -1,6 +1,5 @@
 package com.objet.lofteurs;
 
-import java.util.ArrayList;
 
 
 public class Saison1 {
@@ -22,19 +21,22 @@ public class Saison1 {
 			new Saison1().primeTime();
 	
 	}
-	
-	//
-	
+
 	public void primeTime() {
 		ZoneGraphique zone = new ZoneGraphique("Mon premier loft");
 		Loft loft = new Loft(tailleLoft,zone);
-		loft.remplissageAleatoire(Saison1.quantiteNourriture,Saison1.Repartition);
-		ArrayList<Neuneu> Participants = new ArrayList<Neuneu>();
-		Neuneu Philippe = new Neuneu(loft,2,2);
-		Participants.add(Philippe);
+		loft.remplissageAleatoireNourriture(Saison1.quantiteNourriture,Saison1.Repartition);
+		loft.remplissageAleatoireNeuneus(Saison1.nombreLofteurs);
 		zone.ajouterObjet(loft);
+		
 		while(1==1){
-			loft.deplacer(Philippe);
+			int nbNeuneus = loft.getListeNeuneus().size();
+			for (int i=0 ; i<nbNeuneus;i++){
+				
+				
+				
+				
+			}
 			zone.repaint();
 			try { 
 				  Thread.sleep(1000);
