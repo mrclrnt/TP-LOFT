@@ -29,10 +29,10 @@ public class Saison1 {
 		ZoneGraphique zone = new ZoneGraphique("Mon premier loft");
 		Loft loft = new Loft(tailleLoft,zone);
 		loft.remplissageAleatoire(Saison1.quantiteNourriture,Saison1.Repartition);
-		zone.ajouterObjet(loft);
 		ArrayList<Neuneu> Participants = new ArrayList<Neuneu>();
 		Neuneu Philippe = new Neuneu(loft,2,2);
 		Participants.add(Philippe);
+		zone.ajouterObjet(loft);
 		while(1==1){
 			loft.deplacer(Philippe);
 			try { 

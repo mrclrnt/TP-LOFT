@@ -11,6 +11,7 @@ public class Neuneu {
 	public Neuneu(Loft loft,int x,int y) {
 		this.setLoft(loft);
 		this.setCelluleCourante(this.loft.getCellule(x,y));
+		this.loft.getCellule(x,y).setNeuneu(this);
 		int Energie = (int)(this.loft.getMaxEnergie()*Math.random());
 		this.setEnergie(Energie);
 		this.setSexe();
@@ -97,7 +98,7 @@ public class Neuneu {
 	public String getNeuneuPath(){
 		String path = new String();
 		if(this.sexe=="homme"){
-			path = new File("pomme.png").getName();
+			path = new File("neuneu.png").getName();
 		}
 		return path;
 	}

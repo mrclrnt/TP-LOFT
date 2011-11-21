@@ -48,7 +48,9 @@ public class Cellule {
 			g.drawImage(image, 60*x+1, 60*y+1,15,15, observer);
 		}
 		if (this.neuneu != null){
-			// Il faut coder ce truc, la méthode getNeuneuPath existe dans Neuneu.java
+			ImageObserver observer = null;
+	        Image image = Toolkit.getDefaultToolkit().getImage(this.neuneu.getNeuneuPath()) ;
+	        g.drawImage(image, 60*x+10, 60*y+10,40,40, observer);
 		}
 	}
 	
