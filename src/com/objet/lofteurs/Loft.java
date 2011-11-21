@@ -49,16 +49,12 @@ public class Loft implements ObjetDessinable {
 							if (this.getCellule(i,j).getNourriture()==null) {
 								Nourriture PommeDansCellule = new Nourriture("Pommes",quantiteCellule,10);
 								this.getCellule(i,j).setNourriture(PommeDansCellule);
-								System.out.println("Initialisation");
 							}
 							else {
 								this.getCellule(i,j).getNourriture().setQuantite(this.getCellule(i,j).getNourriture().getQuantite() + quantiteCellule);
-								System.out.println("Update de bouffe");
-								System.out.println(quantiteCellule);
 							}
 							nourritureRestante=nourritureRestante-quantiteCellule;
 							nourritureDeposee=quantiteCellule+nourritureDeposee;
-							System.out.println("quantiteCellule : " + quantiteCellule + ",NourritureRestante : " + nourritureRestante +", Nourriture Deposee : " + nourritureDeposee);
 							}
 						}
 					}
@@ -67,6 +63,18 @@ public class Loft implements ObjetDessinable {
 		}
 	}
 
+	/* *********************************************************************** */
+	/* Methode permettant de deplacer un neuneu								   */
+	/* *********************************************************************** */
+	public void deplacer(Neuneu neuneu) {
+		Cellule vielleCellule = neuneu.getCelluleCourante();
+		this.getCellule(vielleCellule.getX(),vielleCellule.getY()).setNeuneu(null);
+		Cellule nouvelleCellule = neuneu.marcher();
+		this.getCellule(nouvelleCellule.getX(),nouvelleCellule.getY()).setNeuneu(neuneu);
+		System.out.println(neuneu.getCelluleCourante().getX() +" "+ neuneu.getCelluleCourante().getY());
+	}
+	
+	
 	public int getMaxEnergie() {
 		return maxEnergie;
 	}

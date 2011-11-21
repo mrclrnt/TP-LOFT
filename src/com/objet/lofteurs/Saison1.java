@@ -1,5 +1,7 @@
 package com.objet.lofteurs;
 
+import java.util.ArrayList;
+
 
 public class Saison1 {
 
@@ -16,7 +18,9 @@ public class Saison1 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new Saison1().primeTime();
+
+			new Saison1().primeTime();
+	
 	}
 	
 	//
@@ -26,10 +30,19 @@ public class Saison1 {
 		Loft loft = new Loft(tailleLoft,zone);
 		loft.remplissageAleatoire(Saison1.quantiteNourriture,Saison1.Repartition);
 		zone.ajouterObjet(loft);
+		ArrayList<Neuneu> Participants = new ArrayList<Neuneu>();
 		Neuneu Philippe = new Neuneu(loft,2,2);
-		System.out.println(Philippe.getSexe());
-		loft.add(Philippe);
-		System.out.println(loft.getListeNeuneus().get(0).getSexe());
+		Participants.add(Philippe);
+		while(1==1){
+			loft.deplacer(Philippe);
+			try { 
+				  Thread.sleep(1000);
+				}
+				catch (InterruptedException exception) {
+				  exception.printStackTrace();
+				}
+		}
+		
 //		for (int i=0 ; i<nombreLofteurs ; i++) {
 //			double x = Math.random();
 //			if (x<proportionVorace) {
