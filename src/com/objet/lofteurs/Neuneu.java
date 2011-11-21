@@ -16,6 +16,11 @@ public class Neuneu {
 		this.setEnergie(Energie);
 		this.setSexe();
 	}
+	public void manger(){
+		if (this.celluleCourante.getNourriture() != null){
+			this.setEnergie(this.getEnergie()+this.celluleCourante.getNourriture().getQuantite());	
+		}
+	}
 	
 	public Cellule marcher() {
 		int oldx = this.getCelluleCourante().getX();
@@ -29,11 +34,11 @@ public class Neuneu {
 			newx=oldx-1;break;
 			}
 		case (2) : // On va bouger de 1 en y
-			if (oldy<10){
+			if (oldy<this.loft.getH()-1){
 			newy=oldy+1;break;
 			}
 		case (3) : // On va bouger de 1 en x
-			if (oldx<10){
+			if (oldx<this.loft.getW()-1){
 			newx=oldx+1;break;
 			}
 		case (4) :  // On va bouger de -1 en y

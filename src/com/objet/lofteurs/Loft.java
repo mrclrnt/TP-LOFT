@@ -8,7 +8,7 @@ public class Loft implements ObjetDessinable {
 	private ZoneGraphique zone;
 	private int h;
 	private int w;
-	private int maxEnergie;
+	private int maxEnergie=500;
 	private ArrayList<ArrayList<Cellule>> listeCellules;
 	private ArrayList<Neuneu> listeNeuneus;
 
@@ -89,7 +89,7 @@ public class Loft implements ObjetDessinable {
 		this.getCellule(vielleCellule.getX(),vielleCellule.getY()).setNeuneu(null);
 		Cellule nouvelleCellule = neuneu.marcher();
 		this.getCellule(nouvelleCellule.getX(),nouvelleCellule.getY()).setNeuneu(neuneu);
-		System.out.println(neuneu.getCelluleCourante().getX() +" "+ neuneu.getCelluleCourante().getY());
+	//	System.out.println(neuneu.getCelluleCourante().getX() +" "+ neuneu.getCelluleCourante().getY());
 	}
 	
 	
@@ -120,6 +120,22 @@ public class Loft implements ObjetDessinable {
 				this.getCellule(i, j).dessinerObjet(g);
 			}
 		}
+	}
+
+	public int getH() {
+		return h;
+	}
+
+	public void setH(int h) {
+		this.h = h;
+	}
+
+	public int getW() {
+		return w;
+	}
+
+	public void setW(int w) {
+		this.w = w;
 	}
 
 }
