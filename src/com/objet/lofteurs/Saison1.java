@@ -31,10 +31,15 @@ public class Saison1 {
 		loft.remplissageAleatoire(Saison1.quantiteNourriture,Saison1.Repartition);
 		ArrayList<Neuneu> Participants = new ArrayList<Neuneu>();
 		Neuneu Philippe = new Neuneu(loft,2,2);
+	//	Neuneu Pierrette = new Neuneu(loft,5,8);
 		Participants.add(Philippe);
+	//	Participants.add(Pierrette);
 		zone.ajouterObjet(loft);
 		while(1==1){
 			loft.deplacer(Philippe);
+			if (Philippe.getCelluleCourante().getNourriture()!=null){
+			System.out.println(Philippe.getCelluleCourante().getNourriture().getQuantite());
+			}
 			zone.repaint();
 			try { 
 				  Thread.sleep(1000);
