@@ -26,6 +26,7 @@ public class Loft implements ObjetDessinable {
 			}
 			listeCellules.add(e);
 		}
+		listeNeuneus = new ArrayList<Neuneu>();
 	}
 
 	public Cellule getCellule(int x, int y) {
