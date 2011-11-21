@@ -97,9 +97,9 @@ public class Neuneu {
 	
 	public String getNeuneuPath(){
 		String path = new String();
-		if(this.sexe=="homme"){
-			path = new File("neuneu.png").getName();
-		}
+		//if(this.sexe=="homme"){
+			path = new File("neuneu1.png").getName();
+		//}
 		return path;
 	}
 
