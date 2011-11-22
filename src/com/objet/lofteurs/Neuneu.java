@@ -16,6 +16,17 @@ public class Neuneu {
 		this.setEnergie(Energie);
 		this.setSexe();
 	}
+	
+	public void action() {
+		int k = (int)(3*(Math.random())+1);
+		switch (k) {
+		case (1) : this.marcher();
+		case (2) : this.manger();
+		case (3) : this.seReproduire();
+		}
+		
+	}
+	
 	public void manger(){
 		if (this.celluleCourante.getNourriture() != null){
 			this.setEnergie(this.getEnergie()+this.celluleCourante.getNourriture().getQuantite());	

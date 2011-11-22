@@ -39,12 +39,13 @@ public class Saison1 {
 		zone.ajouterObjet(loft);
 		
 		while(1==1){
-			//int nbNeuneus = loft.getListeNeuneus().size();
-			//for (int i=0 ; i<nbNeuneus;i++){
+			ArrayList<Neuneu> tourNeuneu = loft.getListeNeuneus();
+			for (int i=0 ; i<tourNeuneu.size() ; i++){
+				tourNeuneu.get(i).action();
 				
 				
 				
-				
+			}
 			loft.deplacer(Philippe);
 			if (Philippe.getCelluleCourante().getNourriture()!=null){
 			System.out.println(Philippe.getCelluleCourante().getNourriture().getQuantite());
