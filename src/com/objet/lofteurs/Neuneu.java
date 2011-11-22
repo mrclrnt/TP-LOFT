@@ -29,14 +29,24 @@ public class Neuneu {
 	
 	public void manger(){
 		if (this.celluleCourante.getNourriture() != null){
-			this.setEnergie(this.getEnergie()+this.celluleCourante.getNourriture().getQuantite());	
+			int miam;
+			int quantitevoulue = (int)(3*(Math.random()));
+			if (this.getCelluleCourante().getNourriture().getQuantite()<quantitevoulue){
+				miam=this.getCelluleCourante().getNourriture().getQuantite();
+			}
+			else {
+				miam=quantitevoulue;
+			}	
+				this.setEnergie(this.getEnergie()+(this.celluleCourante.getNourriture().getEnergie()*miam));
+				this.getCelluleCourante().getNourriture().setQuantite(this.getCelluleCourante().getNourriture().getQuantite()-miam);
+			}
 		}
-	}
+
 	
-	public Cellule marcher() {
+	public void marcher() {
 		int oldx = this.getCelluleCourante().getX();
 		int oldy = this.getCelluleCourante().getY();
-		int k = (int)(4*(Math.random())+1);
+		int k = (int)(5*(Math.random())+1);
 		int newx=oldx;
 		int newy=oldy;
 		switch (k) {
@@ -56,10 +66,12 @@ public class Neuneu {
 			if (oldy>0){
 			newy=oldy-1; break;
 			}
+		case (5) : // Il choisit de ne pas bouger
+			break;
 		}
-		Cellule nouvelleCellule= new Cellule(newx,newy);
-		this.setCelluleCourante(nouvelleCellule);
-		return nouvelleCellule;
+		this.loft.getCellule(oldx, oldy).setNeuneu(null);
+		this.loft.getCellule(newx, newy).setNeuneu(this);
+		this.setEnergie(this.getEnergie()-2); // Ca creuse de marche !
 	}
 
 	public void seReproduire() {
