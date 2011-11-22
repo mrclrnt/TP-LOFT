@@ -12,33 +12,55 @@ public class Neuneu {
 		this.setLoft(loft);
 		this.setCelluleCourante(this.loft.getCellule(x,y));
 		this.loft.getCellule(x,y).setNeuneu(this);
-		int Energie = (int)(this.loft.getMaxEnergie()*Math.random());
+		int Energie = Saison1.initEnergie;
 		this.setEnergie(Energie);
 		this.setSexe();
 	}
 	
 	public void action() {
-		int k = (int)(3*(Math.random())+1);
-		switch (k) {
-		case (1) : this.marcher();
-		case (2) : this.manger();
-		case (3) : this.seReproduire();
+		//Si la cellule contient de la nourriture et si le Neuneu est mort de faim
+		if(this.getCelluleCourante().getNourriture() != null && this.getEnergie()<Saison1.initEnergie){
+			this.manger();
+			System.out.println(this + " mange car mort de faim");
 		}
-		
+		//Si la cellule contient de la nourriture et si le neuneu n'est pas rassasié
+		else if(this.getCelluleCourante().getNourriture() != null && this.getEnergie()<Saison1.maxEnergie){
+			int k = (int)(2*(Math.random())+1);
+			switch (k) {
+				case (1) : this.marcher();
+				System.out.println(this + " marche alors qu'il a la possibilité de manger");
+				break;
+				case (2) : this.manger();
+				System.out.println(this + " mange");
+				break;
+			}	
+		}
+		//dans tous les autres cas
+		else{
+			this.marcher();
+			System.out.println(this + " marche car pas de nourriture dans la case ou pas faim");
+		}
+		System.out.println("Quantité energie du neuneu après action : " +this.getEnergie());
 	}
+		
 	
 	public void manger(){
 		if (this.celluleCourante.getNourriture() != null){
 			int miam;
+			Nourriture cellNourriture = this.getCelluleCourante().getNourriture();
 			int quantitevoulue = (int)(3*(Math.random()));
-			if (this.getCelluleCourante().getNourriture().getQuantite()<quantitevoulue){
-				miam=this.getCelluleCourante().getNourriture().getQuantite();
+			if (cellNourriture.getQuantite()<quantitevoulue){
+				miam = cellNourriture.getQuantite();
 			}
 			else {
 				miam=quantitevoulue;
 			}	
-				this.setEnergie(this.getEnergie()+(this.celluleCourante.getNourriture().getEnergie()*miam));
-				this.getCelluleCourante().getNourriture().setQuantite(this.getCelluleCourante().getNourriture().getQuantite()-miam);
+				this.setEnergie(this.getEnergie()+(cellNourriture.getEnergie()*miam));
+				cellNourriture.setQuantite(cellNourriture.getQuantite()-miam);
+				if (cellNourriture.getQuantite()==0){
+					this.getCelluleCourante().setNourriture(null);
+				}
+			System.out.println("Quantité nourriture dans la cellule après repas : " + cellNourriture.getQuantite());
 			}
 		}
 
@@ -69,8 +91,13 @@ public class Neuneu {
 		case (5) : // Il choisit de ne pas bouger
 			break;
 		}
+		
+		// changle le neuneu de cellule
 		this.loft.getCellule(oldx, oldy).setNeuneu(null);
 		this.loft.getCellule(newx, newy).setNeuneu(this);
+		//change la celluleCourante, attribut de Neuneu
+		this.setCelluleCourante(this.loft.getCellule(newx, newy));
+		//Fait diminuer l'énergie du Neuneu
 		this.setEnergie(this.getEnergie()-2); // Ca creuse de marche !
 	}
 

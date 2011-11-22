@@ -6,15 +6,18 @@ import java.util.ArrayList;
 
 public class Saison1 {
 
-	public static int nombreLofteurs = 4;
+	public static int nombreLofteurs = 2;
 	public static int tailleLoft = 10;
 	public static float proportionErratique = .75f;
 	public static float proportionVorace = .25f;
 	public static float proportionCannibale = 0f;
-	public static int quantiteNourriture = 100;
-	public static double Repartition = 0.05; 	// A chaque remplissage de la grille en nourriture je peux ajouter
+	public static int quantiteNourriture = 20;
+	public static double Repartition = 0.1; 	// A chaque remplissage de la grille en nourriture je peux ajouter
 												// jusqu a Repartition (%) de la nourriture totale 
 												// 	sur la cellule consideree
+	public static int initEnergie=10;
+	public static int maxEnergie=30;
+	
 	/**
 	 * @param args
 	 */
@@ -28,29 +31,42 @@ public class Saison1 {
 		ZoneGraphique zone = new ZoneGraphique("Mon premier loft");
 		Loft loft = new Loft(tailleLoft,zone);
 		loft.remplissageAleatoireNourriture(Saison1.quantiteNourriture,Saison1.Repartition);
-		//loft.remplissageAleatoireNeuneus(Saison1.nombreLofteurs);
+		loft.remplissageAleatoireNeuneus(Saison1.nombreLofteurs);
 
-
-		ArrayList<Neuneu> Participants = new ArrayList<Neuneu>();
-		Neuneu Philippe = new Neuneu(loft,2,2);
-	//	Neuneu Pierrette = new Neuneu(loft,5,8);
-		Participants.add(Philippe);
-	//	Participants.add(Pierrette);
 		zone.ajouterObjet(loft);
+		int count = 1;
 		
 		while(1==1){
+			System.out.println(count);
+			
+			//Suppression des neuneus qui n'ont plus d'energie
+			ArrayList<Neuneu> NeuneuAGarder = new ArrayList<Neuneu>();
+			int nbNeuneuAvantCheck = loft.getListeNeuneus().size();
+			for (int i=0 ; i<loft.getListeNeuneus().size() ; i++){
+				if (loft.getListeNeuneus().get(i).getEnergie()>0 ){
+					NeuneuAGarder.add(loft.getListeNeuneus().get(i));
+				}
+				else {
+					loft.getListeNeuneus().get(i).getCelluleCourante().setNeuneu(null);
+				}
+			}
+			int nbNeuneuApresCheck = NeuneuAGarder.size();
+			if (nbNeuneuAvantCheck!=nbNeuneuApresCheck){
+				System.out.println(nbNeuneuAvantCheck-nbNeuneuApresCheck + " neuneu(s) supprimé(s)");
+				loft.setListeNeuneus(NeuneuAGarder);
+			}
+
+			
+			
+			
 			ArrayList<Neuneu> tourNeuneu = loft.getListeNeuneus();
 			for (int i=0 ; i<tourNeuneu.size() ; i++){
 				tourNeuneu.get(i).action();
-				
-				
-				
-			}
-			loft.deplacer(Philippe);
-			if (Philippe.getCelluleCourante().getNourriture()!=null){
-			System.out.println(Philippe.getCelluleCourante().getNourriture().getQuantite());
 			}
 			zone.repaint();
+			
+			
+			count++;
 			try { 
 				  Thread.sleep(1000);
 				}

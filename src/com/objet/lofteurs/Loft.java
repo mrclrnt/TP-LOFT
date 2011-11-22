@@ -8,7 +8,6 @@ public class Loft implements ObjetDessinable {
 	private ZoneGraphique zone;
 	private int h;
 	private int w;
-	private int maxEnergie=500;
 	private ArrayList<ArrayList<Cellule>> listeCellules;
 	private ArrayList<Neuneu> listeNeuneus;
 
@@ -77,16 +76,10 @@ public class Loft implements ObjetDessinable {
 				yPosition = (int)(h*(Math.random()));
 			}
 			//placer le neuneu
-			this.getCellule(xPosition, yPosition).setNeuneu(new Neuneu(this,xPosition,yPosition));
+			Neuneu neuneu = new Neuneu(this,xPosition,yPosition);
+			this.getCellule(xPosition, yPosition).setNeuneu(neuneu);
+			this.listeNeuneus.add(neuneu);
 		}
-	}
-		
-	public int getMaxEnergie() {
-		return maxEnergie;
-	}
-
-	public void setMaxEnergie(int maxEnergie) {
-		this.maxEnergie = maxEnergie;
 	}
 
 	public ArrayList<Neuneu> getListeNeuneus() {
