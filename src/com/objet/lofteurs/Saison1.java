@@ -15,7 +15,7 @@ public class Saison1 {
 	public static double Repartition = 0.1; 	// A chaque remplissage de la grille en nourriture je peux ajouter
 												// jusqu a Repartition (%) de la nourriture totale 
 												// 	sur la cellule consideree
-	public static int initEnergie=50;
+	public static int initEnergie=10;
 	public static int maxEnergie=30;
 
 	/**
@@ -36,8 +36,8 @@ public class Saison1 {
 		zone.ajouterObjet(loft);
 		int count = 1;
 
-		while(1==1){
-			System.out.println(count);
+		while(loft.getListeNeuneus().size()>0){
+			System.out.println("Tour N∞ " + count);
 
 			//Suppression des neuneus qui n'ont plus d'energie
 			ArrayList<Neuneu> NeuneuAGarder = new ArrayList<Neuneu>();
@@ -52,20 +52,34 @@ public class Saison1 {
 			}
 			int nbNeuneuApresCheck = NeuneuAGarder.size();
 			if (nbNeuneuAvantCheck!=nbNeuneuApresCheck){
-				System.out.println(nbNeuneuAvantCheck-nbNeuneuApresCheck + " neuneu(s) supprimé(s)");
+				System.out.println(nbNeuneuAvantCheck-nbNeuneuApresCheck + " neuneu(s) supprime(s)");
 				loft.setListeNeuneus(NeuneuAGarder);
 			}
 
-
-
-
-			ArrayList<Neuneu> tourNeuneu = loft.getListeNeuneus();
-			for (int i=0 ; i<tourNeuneu.size() ; i++){
-				tourNeuneu.get(i).action();
+			
+			//Reproduction
+			ArrayList<Neuneu> neuneuEnReproduction = new ArrayList<Neuneu>();
+			for (int i=0 ; i<loft.getListeNeuneus().size() ; i++){
+				Neuneu partenaire1 = loft.getListeNeuneus().get(i);
+				// si partenaire1 n'est pas deja en train de se reproduire
+				if (!neuneuEnReproduction.contains(partenaire1)){ 
+					Neuneu partenaire2 = partenaire1.neuneuAuxAlentours();
+					// si partenaire2 n'est pas deja en train de se reproduire
+					if (!neuneuEnReproduction.contains(partenaire2) &&
+							partenaire2 != null){ 
+						neuneuEnReproduction.add(partenaire1);
+						neuneuEnReproduction.add(partenaire2);	
+						partenaire1.seReproduire(partenaire2);
+					}
+				}
 			}
+			
+			//Deplacement ou repas
+			for (int i=0 ; i<loft.getListeNeuneus().size() ; i++){
+				loft.getListeNeuneus().get(i).action();
+			}
+			
 			zone.repaint();
-
-
 			count++;
 			try { 
 				  Thread.sleep(1000);
@@ -74,35 +88,8 @@ public class Saison1 {
 				  exception.printStackTrace();
 				}
 		}
+		System.out.println("Fin de la saison");
 	}
 }
 
-//		for (int i=0 ; i<nombreLofteurs ; i++) {
-//			double x = Math.random();
-//			if (x<proportionVorace) {
-//				loft.add(new Vorace(loft,
-//						(int)(Math.random()*29),
-//						(int)(Math.random()*29),
-//						3));
-//			}
-//			else {
-//				x -= proportionVorace;
-//				if (x<proportionErratique) {
-//					loft.add(new Neuneu(loft,
-//							(int)(Math.random()*29),
-//							(int)(Math.random()*29)));
-//				}
-//				else {
-//					x -= proportionErratique;
-//					if (x<proportionCannibale) {
-//						loft.add(new Cannibale(loft,
-//						(int)(Math.random()*29),
-//						(int)(Math.random()*29),
-//						5));
-//					}
-//				}
-//			}
-//		}
-
-//		loft.go();
 	

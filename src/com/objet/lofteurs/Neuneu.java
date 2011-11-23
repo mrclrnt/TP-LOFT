@@ -23,12 +23,12 @@ public class Neuneu {
 			this.manger();
 			System.out.println(this + " mange car mort de faim");
 		}
-		//Si la cellule contient de la nourriture et si le neuneu n'est pas rassasié
+		//Si la cellule contient de la nourriture et si le neuneu n'est pas rassasie
 		else if(this.getCelluleCourante().getNourriture() != null && this.getEnergie()<Saison1.maxEnergie){
 			int k = (int)(2*(Math.random())+1);
 			switch (k) {
 				case (1) : this.marcher();
-				System.out.println(this + " marche alors qu'il a la possibilité de manger");
+				System.out.println(this + " marche alors qu'il a la possibilite de manger");
 				break;
 				case (2) : this.manger();
 				System.out.println(this + " mange");
@@ -40,7 +40,7 @@ public class Neuneu {
 			this.marcher();
 			System.out.println(this + " marche car pas de nourriture dans la case ou pas faim");
 		}
-		System.out.println("Quantité energie du neuneu après action : " +this.getEnergie());
+		System.out.println("Quantite energie du neuneu apres action : " +this.getEnergie());
 	}
 
 	public void manger(){
@@ -59,7 +59,6 @@ public class Neuneu {
 				if (cellNourriture.getQuantite()==0){
 					this.getCelluleCourante().setNourriture(null);
 				}
-			System.out.println("Quantité nourriture dans la cellule après repas : " + cellNourriture.getQuantite());
 			}
 		}
 
@@ -67,46 +66,79 @@ public class Neuneu {
 	public void marcher() {
 		int oldx = this.getCelluleCourante().getX();
 		int oldy = this.getCelluleCourante().getY();
-		int k = (int)(5*(Math.random())+1);
-		int newx=oldx;
-		int newy=oldy;
-		switch (k) {
-		case (1) :   // On va bouger de -1 en x
-			if (oldx>0){
-			newx=oldx-1;break;
-			}
-		case (2) : // On va bouger de 1 en y
-			if (oldy<this.loft.getH()-1){
-			newy=oldy+1;break;
-			}
-		case (3) : // On va bouger de 1 en x
-			if (oldx<this.loft.getW()-1){
-			newx=oldx+1;break;
-			}
-		case (4) :  // On va bouger de -1 en y
-			if (oldy>0){
-			newy=oldy-1; break;
-			}
-		case (5) : // Il choisit de ne pas bouger
-			break;
-		}
+		boolean deplacementEffectue = false;
 		
-		// changle le neuneu de cellule
-		this.loft.getCellule(oldx, oldy).setNeuneu(null);
-		if (this.loft.getCellule(newx,newy).getNeuneu()!=null){
-		this.seReproduire(newx,newy);
+		while (!deplacementEffectue){
+			int k = (int)(5*(Math.random())+1);
+			int newx=oldx;
+			int newy=oldy;
+			switch (k) {
+			case (1) :   // On va bouger de -1 en x
+				if (oldx>0){
+				newx=oldx-1;break;
+				}
+			case (2) : // On va bouger de 1 en y
+				if (oldy<this.loft.getH()-1){
+				newy=oldy+1;break;
+				}
+			case (3) : // On va bouger de 1 en x
+				if (oldx<this.loft.getW()-1){
+				newx=oldx+1;break;
+				}
+			case (4) :  // On va bouger de -1 en y
+				if (oldy>0){
+				newy=oldy-1; break;
+				}
+			case (5) :  // On ne bouge pas
+				break;
+			}
+			if (this.loft.getCellule(newx,newy).getNeuneu() == null){
+				//change l'attribut Neuneu de l'ancienne et de la nlle cellule
+				this.loft.getCellule(oldx, oldy).setNeuneu(null);
+				this.loft.getCellule(newx, newy).setNeuneu(this);
+				//change la celluleCourante, attribut de Neuneu
+				this.setCelluleCourante(this.loft.getCellule(newx, newy));
+				//Fait diminuer l'energie du Neuneu
+				this.setEnergie(this.getEnergie()-(int)(0.1*Saison1.initEnergie));
+				deplacementEffectue=true;
+			}
 		}
-		this.loft.getCellule(newx, newy).setNeuneu(this);
-		//change la celluleCourante, attribut de Neuneu
-		this.setCelluleCourante(this.loft.getCellule(newx, newy));
-		//Fait diminuer l'énergie du Neuneu
-		this.setEnergie(this.getEnergie()-2); // Ca creuse de marcher !
 	}
-
-	public void seReproduire(int x,int y) {
-		Neuneu enfant = new Neuneu(loft,x,y);
-		loft.add(enfant);
-		this.setEnergie(this.getEnergie()-((int)(0.1*Saison1.initEnergie)));
+	/* Methode de reproduction
+	 * Amelioration: generer eventuellement un enfant
+	 */
+	public void seReproduire(Neuneu partenaire) {
+		if (partenaire != null){ //s'il on a trouve un neuneu aux alentours
+			this.setEnergie(this.getEnergie()-((int)(0.1*Saison1.initEnergie)));
+			partenaire.setEnergie(partenaire.getEnergie()-((int)(0.1*Saison1.initEnergie)));
+			System.out.println(this + " et " + partenaire + "se sont reproduits");
+		
+		}
+	}
+	
+	/* Cette fonction recupere un neuneu aux alentours (s'il y en a un)
+	 * Pour le moment, elle gere assez mal le cas ou il y en a deux aux alentours
+	 * (elle prend toujours en priorite celui en haut, puis celui a droite,
+	 * puis celui en bas, et enfin, s'il est seul, celui a gauche)
+	 * Amelioration en implementant un random
+	 */
+	public Neuneu neuneuAuxAlentours(){
+		Neuneu partenaire = null;
+		int x = this.getCelluleCourante().getX();
+		int y = this.getCelluleCourante().getY();
+		if(x>0){
+			partenaire = this.loft.getCellule(x-1, y).getNeuneu();
+		}
+		if(y<this.loft.getH()-1){
+			partenaire = this.loft.getCellule(x, y+1).getNeuneu();
+		}
+		if(x<this.loft.getW()-1){
+			partenaire = this.loft.getCellule(x+1, y).getNeuneu();
+		}
+		if(y>0){
+			partenaire = this.loft.getCellule(x, y-1).getNeuneu();
+		}
+		return partenaire;
 	}
 
 	// Getter et Setter lies a la cellule sur laquelle se trouve le neuneu
