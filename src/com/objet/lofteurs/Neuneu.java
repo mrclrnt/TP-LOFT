@@ -60,7 +60,7 @@ public class Neuneu {
 		}
 		this.loft.getCellule(oldx, oldy).setNeuneu(null);
 		this.loft.getCellule(newx, newy).setNeuneu(this);
-		this.setEnergie(this.getEnergie()-2); // Ca creuse de marche !
+		this.setEnergie(this.getEnergie()-2); // Ca creuse de marcher !
 	}
 
 	public void seReproduire() {

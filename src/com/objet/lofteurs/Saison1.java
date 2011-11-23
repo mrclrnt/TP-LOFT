@@ -42,13 +42,9 @@ public class Saison1 {
 			//int nbNeuneus = loft.getListeNeuneus().size();
 			//for (int i=0 ; i<nbNeuneus;i++){
 				
-				
-				
-				
-			loft.deplacer(Philippe);
-			if (Philippe.getCelluleCourante().getNourriture()!=null){
-			System.out.println(Philippe.getCelluleCourante().getNourriture().getQuantite());
-			}
+			Philippe.marcher();
+			Philippe.manger();
+			System.out.println(Philippe.getEnergie());
 			zone.repaint();
 			try { 
 				  Thread.sleep(1000);
